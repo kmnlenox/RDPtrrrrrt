@@ -24,10 +24,9 @@ jobs:
           Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "admin@123" -Force)
 
       - name: Start Playit Tunnel
-        env:
-          PLAYIT_AUTH_KEY: ${{ secrets.PL }}
         run: |
-          Start-Process -FilePath "$env:USERPROFILE\playit.exe" -ArgumentList "--secret $env:PLAYIT_AUTH_KEY" -NoNewWindow
+          $authKey = "7dcb5daa1b7bd7319d36e0ba18ae0f0ef79c6de807e789ec5524d3c3b9189a2e"
+          Start-Process -FilePath "$env:USERPROFILE\playit.exe" -ArgumentList "--secret $authKey" -NoNewWindow
           Start-Sleep -Seconds 5
           Start-Process -FilePath "$env:USERPROFILE\playit.exe" -NoNewWindow
 
